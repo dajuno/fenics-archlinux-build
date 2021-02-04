@@ -3,8 +3,7 @@ set -e
 source env_build.sh
 
 echo "
-# adapted for HFI work station
-module load mpi/openmpi-x86_64
+# load python virtual env
 
 source ${PREFIX}/venv/bin/activate" >> ${PREFIX}/share/dolfin/dolfin.conf
 

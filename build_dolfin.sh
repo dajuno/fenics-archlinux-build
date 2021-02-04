@@ -3,8 +3,8 @@ set -e
 
 source env_build.sh
 
-export PETSC_DIR=${PREFIX}
-export SLEPC_DIR=${PREFIX}
+# export PETSC_DIR=${PREFIX}
+# export SLEPC_DIR=${PREFIX}
 
 echo "Downloading and building dolfin ${FENICS_VERSION}"
 

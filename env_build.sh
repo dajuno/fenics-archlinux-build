@@ -2,4 +2,5 @@
 
 echo "setting build environment"
 
-module load mpi/openmpi-x86_64
+echo "(nothing)"
+# module load mpi/openmpi-x86_64

@@ -1,23 +1,25 @@
 # FEniCS build scripts
 
-Build PETSc, SLEPc, DOLFIN/FENICS, mshr within a Python virtualenv, using system dependencies for OpenMPI, BLAS, LAPACK, HDF5, etc.
+Build DOLFIN/FENICS, mshr within a Python virtualenv, using system dependencies
+for PETSc, OpenMPI, BLAS, LAPACK, HDF5, etc, from the Arch Linux official
+repository and AUR.
 
-## Dependencies on CentOS 8.1 (default)
+## Dependencies on ArchLinux (not complete)
 
-* openmpi-devel
-* hdf5-openmpi-devel
-* lapack-devel
-* openblas-devel
-* boost-devel
-* eigen3-devel
-* pybind11-devel
-* python36-devel
+* openmpi
+* hdf5-openmpi
+* openblas-lapack
+* boost
+* eigen
+* pybind11
 * doxygen
+* petsc-git
+* slepc-git
 
 For mshr:
 
-* gmp-devel
-* mpfr-devel
+* gmp
+* mpfr
 
 
 ## Instructions
