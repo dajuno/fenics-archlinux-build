@@ -40,13 +40,13 @@ Instructions
 
         source $PREFIX/share/dolfin/dolfin.conf
 
-    where :code:`$PREFIX` is as specified in :code:`build_all.sh`.
+   where :code:`$PREFIX` is as specified in :code:`build_all.sh`.
 
 3. Test the installation with the Poisson example:
 
     .. code:: python3 test_poisson.py
 
-    and in parallel:
+   and in parallel:
 
     .. code:: shell
 
