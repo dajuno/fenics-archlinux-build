@@ -1,10 +1,15 @@
-# FEniCS build scripts
+====================
+FEniCS build scripts
+====================
+
+.. note:: THIS INSTALLS LEGACY FENICS 2019 FROM BITBUCKET
 
 Build DOLFIN/FENICS, mshr within a Python virtualenv, using system dependencies
 for PETSc, OpenMPI, BLAS, LAPACK, HDF5, etc, from the Arch Linux official
 repository and AUR.
 
-## Dependencies on ArchLinux (not complete)
+Dependencies on ArchLinux (not complete)
+========================================
 
 * openmpi
 * hdf5-openmpi
@@ -22,30 +27,27 @@ For mshr:
 * mpfr
 
 
-## Instructions
+Instructions
+============
 
-1. Configure and run `build_all.sh`:
+1. Configure and run :code:`build_all.sh`:
 
-    ```
-        ./build_all.sh |& tee build.log
-    ```
+   .. code:: ./build_all.sh |& tee build.log
   
 2. Load the FEniCS environment (modules, environment variables, python venv) with:
 
-    ```shell
-      source $PREFIX/share/dolfin/dolfin.conf
-    ```
+    .. code:: shell
 
-    where `$PREFIX` is as specified in `build_all.sh`.
+        source $PREFIX/share/dolfin/dolfin.conf
+
+    where :code:`$PREFIX` is as specified in :code:`build_all.sh`.
 
 3. Test the installation with the Poisson example:
 
-    ```shell
-        python3 test_poisson.py
-    ```
+    .. code:: python3 test_poisson.py
 
     and in parallel:
 
-    ```shell
+    .. code:: shell
+
         mpirun -n 4 python3 test_poisson.py
-    ```
