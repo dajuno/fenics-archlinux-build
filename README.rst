@@ -9,7 +9,7 @@ FEniCS build scripts
 Build DOLFIN/FEniCS, mshr and PETSc/SLEPc within a Python virtualenv, using
 system packages for OpenMPI, OpenBLAS, LAPACK, HDF5, etc, from the Arch Linux
 official repository.
-*Originally inspired by Jack Hale.*
+*(Build scripts originally inspired by Jack Hale.)*
 
 Dependencies on ArchLinux
 =========================
