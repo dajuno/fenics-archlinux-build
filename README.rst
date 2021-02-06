@@ -58,7 +58,9 @@ Instructions
 
 1. Configure and run :code:`build_all.sh`:
 
-   .. code:: ./build_all.sh |& tee build.log
+   .. code:: shell
+   
+      ./build_all.sh |& tee build.log
   
 2. Load the FEniCS environment (modules, environment variables, python venv) with:
 
