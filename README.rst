@@ -2,30 +2,56 @@
 FEniCS build scripts
 ====================
 
-.. note:: THIS INSTALLS LEGACY FENICS 2019 FROM BITBUCKET
+.. note::
 
-Build DOLFIN/FENICS, mshr within a Python virtualenv, using system dependencies
-for PETSc, OpenMPI, BLAS, LAPACK, HDF5, etc, from the Arch Linux official
-repository and AUR.
+    **THIS INSTALLS LEGACY FEniCS 2019 FROM BITBUCKET**
 
-Dependencies on ArchLinux (not complete)
-========================================
+Build DOLFIN/FEniCS, mshr and PETSc/SLEPc within a Python virtualenv, using
+system packages for OpenMPI, OpenBLAS, LAPACK, HDF5, etc, from the Arch Linux
+official repository.
+*Originally inspired by Jack Hale.*
+
+Dependencies on ArchLinux
+=========================
+
+.. note::
+
+    Updates of the system packages such as hdf5 are likely to break dolfin. A
+    better solution than this mix of compiled and packaged dependencies could
+    be to manually compile all dependencies.
+
+System packages
+---------------
 
 * openmpi
 * hdf5-openmpi
 * openblas-lapack
-* boost
 * eigen
 * pybind11
 * doxygen
-* petsc-git
-* slepc-git
+* cython
+* jupyter
+
+Python packages:
+
+* python-mpi4py
+* python-h5py
+* python-sympy
 
 For mshr:
 
 * gmp
 * mpfr
 
+
+
+
+Compiled from source
+--------------------
+
+* Boost 1.73
+* PETSc 3.13 with suitesparse, mumps, ...
+* SLEPc 3.13
 
 Instructions
 ============

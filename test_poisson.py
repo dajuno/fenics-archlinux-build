@@ -27,7 +27,7 @@ def main():
         # Get number of MPI processes
         ncores = MPI.size(MPI.comm_world)
         N = (ndofs*ncores)
-        
+
         # Refinement levels
         Nx = int(N**(1./3.) + 0.5)
         while (N%Nx != 0):
@@ -99,7 +99,7 @@ def main():
     # Compute solution
     u = Function(V)
     with Timer('Z Assembling...'):
-        A = assemble(a)  
+        A = assemble(a)
         b = assemble(L)
         bc.apply(A, b)
 

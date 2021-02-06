@@ -1,0 +1,11 @@
+--- python/setup.py	2021-02-05 14:12:43.840194126 +0100
++++ python/setup_mod.py	2021-02-05 15:07:01.136909858 +0100
+@@ -18,7 +18,7 @@
+ 
+ REQUIREMENTS = ["numpy",
+                 "pkgconfig",
+-                "pybind11==2.4.3",
++                "pybind11",
+                 "fenics-ffc{}".format(RESTRICT_REQUIREMENTS),
+                 "fenics-ufl{}".format(RESTRICT_REQUIREMENTS),
+                 "fenics-dijitso{}".format(RESTRICT_REQUIREMENTS)]

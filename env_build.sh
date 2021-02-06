@@ -1,6 +1,6 @@
 # source this in your shell
 
 echo "setting build environment"
+# nothing to be done here!
 
-echo "(nothing)"
 # module load mpi/openmpi-x86_64

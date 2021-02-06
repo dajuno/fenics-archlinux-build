@@ -3,6 +3,7 @@ set -e
 source env_build.sh
 
 export PETSC_DIR=${PREFIX}
+export BOOST_DIR=${PREFIX}
 
 export CFLAGS="-O2 -march=native"
 export CXXFLAGS="-O2 -march=native"
