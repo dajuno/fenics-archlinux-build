@@ -1,3 +1,4 @@
+#!/bin/sh
 # source this in your shell
 
 echo "setting build environment"

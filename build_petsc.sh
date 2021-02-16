@@ -7,7 +7,7 @@ source env_build.sh
 
 echo "Downloading and building PETSc ${PETSC_VERSION}"
 
-mkdir -p $BUILD_DIR/tar
+mkdir -p "$BUILD_DIR/tar"
 
 # FROM https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=petsc-git
 generic_flags="-fPIC -O3 -march=x86-64 -mtune=generic"
@@ -24,38 +24,37 @@ export FCFLAGS="$generic_flags"
 export F90FLAGS="$generic_flags"
 export F77FLAGS="$generic_flags"
 
-cd ${BUILD_DIR} && \
-    wget --quiet --read-timeout=10 -nc -P tar/ http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-${PETSC_VERSION}.tar.gz && \
-    tar -xzf tar/petsc-lite-${PETSC_VERSION}.tar.gz && \
-    cd petsc-${PETSC_VERSION} && \
-    python2 ./configure \
-            --COPTFLAGS="$COPTFLAGS" \
-            --CXXOPTFLAGS="$CXXOPTFLAGS" \
-            --CPPFLAGS="$CPPFLAGS" \
-            --FOPTFLAGS="$FOPTFLAGS" \
-            --CFLAGS="$CFLAGS" \
-            --CXXFLAGS="$CXXFLAGS" \
-            --FFLAGS="$FFLAGS" \
-            --FCFLAGS="$FCFLAGS" \
-            --F90FLAGS="$F90FLAGS" \
-            --F77FLAGS="$F77FLAGS" \
-            --with-fortran-bindings=no \
-            --with-debugging=0 \
-            --download-blacs \
-            --download-hypre \
-            --download-metis \
-            --download-parmetis \
-            --download-mumps \
-            --download-ptscotch \
-            --download-scalapack \
-            --download-spai \
-            --download-suitesparse \
-            --download-superlu \
-        --prefix=${PREFIX} && \
-    make MAKE_NP=${BUILD_THREADS} && make install
+cd "${BUILD_DIR}" &&
+	wget --quiet --read-timeout=10 -nc -P tar/ "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-${PETSC_VERSION}.tar.gz" &&
+	tar -xzf "tar/petsc-lite-${PETSC_VERSION}.tar.gz" &&
+	cd "petsc-${PETSC_VERSION}" &&
+	python2 ./configure \
+		--COPTFLAGS="$COPTFLAGS" \
+		--CXXOPTFLAGS="$CXXOPTFLAGS" \
+		--CPPFLAGS="$CPPFLAGS" \
+		--FOPTFLAGS="$FOPTFLAGS" \
+		--CFLAGS="$CFLAGS" \
+		--CXXFLAGS="$CXXFLAGS" \
+		--FFLAGS="$FFLAGS" \
+		--FCFLAGS="$FCFLAGS" \
+		--F90FLAGS="$F90FLAGS" \
+		--F77FLAGS="$F77FLAGS" \
+		--with-fortran-bindings=no \
+		--with-debugging=0 \
+		--download-blacs \
+		--download-hypre \
+		--download-metis \
+		--download-parmetis \
+		--download-mumps \
+		--download-ptscotch \
+		--download-scalapack \
+		--download-spai \
+		--download-suitesparse \
+		--download-superlu \
+		--prefix="${PREFIX}" &&
+	make MAKE_NP="${BUILD_THREADS}" && make install
 
-if [ "$continue_on_key" = true ]; then
-    echo "Press any key to continue..."
-    read -n 1
+if [ "$CONTINUE_ON_KEY" = true ]; then
+	echo "Press any key to continue..."
+	read -r -n 1
 fi
-
