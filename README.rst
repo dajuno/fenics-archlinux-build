@@ -31,6 +31,7 @@ System packages
 * doxygen
 * cython
 * jupyter
+* cmake
 
 Python packages:
 
