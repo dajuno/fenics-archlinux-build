@@ -13,6 +13,7 @@ elif [[ $FENICS_VERSION == "master" ]]; then
 
 	for pkg in fiat dijitso ufl ffc; do
 		cd "$BUILD_DIR"
+        echo
 		if [ -d $pkg ]; then
 			cd $pkg
 			git pull
