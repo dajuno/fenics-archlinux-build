@@ -24,7 +24,7 @@ export MSHR_VERSION=2019.1.0
 # *** NOTE: modify this to change the installation path!
 # $TAG is arbitrary. date is useful for development build
 DATE=$(date +%F)
-export TAG="${FENICS_VERSION}-${DATE}"
+export TAG="${FENICS_VERSION}-${DATE}_new"
 
 export BUILD_THREADS=2
 export PREFIX=${HOME}/work/dev/fenics-${TAG}

@@ -73,3 +73,5 @@ if [ "$CONTINUE_ON_KEY" = true ]; then
     echo "Press any key to continue..."
     read -r -n 1
 fi
+
+echo

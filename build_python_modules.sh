@@ -14,9 +14,13 @@ git clone https://bitbucket.org/petsc/petsc4py "$BUILD_DIR/petsc4py" &&
     python setup.py build && 
     python setup.py install
 
+export PYTHONPATH=$PREFIX/lib:$PYTHONPATH
+
 pip3 install -v slepc4py=="${SLEPC4PY_VERSION}"
 
 if [ "$CONTINUE_ON_KEY" = true ]; then
 	echo "Press any key to continue..."
 	read -r -n 1
 fi
+
+echo
