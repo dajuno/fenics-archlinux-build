@@ -13,16 +13,30 @@ echo "Downloading and building dolfin ${FENICS_VERSION}"
 
 source $VENV/bin/activate
 
+# remove system's petsc location from PYTHONPATH for the case where a conflicting petsc
+# version was installed system wide, e.g. from AUR
+export PYTHONPATH=$(echo ${PYTHONPATH} | awk -v RS=: -v ORS=: '/\/opt\/petsc\/linux-c-opt\/lib/ {next} {print}' | sed 's/:*$//')
+
 patch_dir=$PWD
+
+_apply_patches() {
+    if [[ $FENICS_VERSION == "master" ]]; then
+        patch -p1 --verbose < "${patch_dir}/dolfin_boost_endian_03112022.patch" &&
+            patch -p1 --verbose < "${patch_dir}/dolfin_add-missing-algorithm-include-for-std-min_element-co.patch"
+    else
+        # not tested for the last release tag, but might work...
+        patch -p0 --verbose < "${patch_dir}/dolfin_hdf5-112.patch" &&
+            patch -p0 --verbose < "${patch_dir}/dolfin_no-version-lock-pybind11.patch" &&
+            patch -p1 --verbose < "${patch_dir}/dolfin_add-missing-algorithm-include-for-std-min_element-co.patch" &&
+            patch -p1 --verbose < "${patch_dir}/dolfin_Use-__BYTE_ORDER__-instead-of-removed-Boost-endian.h.patch"
+    fi
+}
 
 cd "$BUILD_DIR" && \
     git clone https://bitbucket.org/fenics-project/dolfin.git && \
     cd dolfin && \
     git checkout "${FENICS_VERSION}" && \
-    patch -p0 --verbose < "${patch_dir}/dolfin_hdf5-112.patch" && \
-    patch -p0 --verbose < "${patch_dir}/dolfin_no-version-lock-pybind11.patch" && \
-    patch -p1 --verbose < "${patch_dir}/dolfin_add-missing-algorithm-include-for-std-min_element-co.patch" && \
-    patch -p1 --verbose < "${patch_dir}/dolfin_Use-__BYTE_ORDER__-instead-of-removed-Boost-endian.h.patch" && \
+    _apply_patches && \
     mkdir -p build && \
     cd build && \
     cmake .. \
@@ -50,6 +64,9 @@ cd "$BUILD_DIR" && \
     make -j "${BUILD_THREADS}" &&  make install && \
     cd "${BUILD_DIR}/dolfin/python" && \
     DOLFIN_DIR="${PREFIX}" pip3 -v install .
+    # DOLFIN_DIR="${PREFIX}" PYTHONPATH="$PREFIX/lib" pip3 -v install .
+    # PYTHONPATH="$PREFIX/lib" makes petsc4py installed by petsc (--download-petsc4py)
+    # findable
 
 
 if [ "$CONTINUE_ON_KEY" = true ]; then

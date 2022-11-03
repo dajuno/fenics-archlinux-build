@@ -4,6 +4,9 @@ set -e
 source env_build.sh
 
 echo "Downloading and building SLEPc ${SLEPC_VERSION}"
+#
+# if petsc is installed system wide (e.g.)
+unset PETSC_DIR
 
 mkdir -p "$BUILD_DIR/tar"
 

@@ -23,6 +23,20 @@ export FFLAGS="$generic_flags"
 export FCFLAGS="$generic_flags"
 export F90FLAGS="$generic_flags"
 export F77FLAGS="$generic_flags"
+# if petsc is installed system wide (e.g.)
+unset PETSC_DIR
+
+# NOTE: pip install petsc4py does not work for 3.13. and python 3.10, as was done in
+# ./build_python_modules.sh
+# https://gitlab.com/petsc/petsc4py/-/issues/9
+# https://github.com/dajuno/fenics-archlinux-build/issues/1
+#
+# Now, petsc4py is downloaded automatically by the petsc4 installer
+# (--download-petsc4py). The petsc configure script runs with python2 (system) and
+# requires Cython and numpy to install petsc4py.
+# Install pip for python2
+# python2 <(curl -L https://bootstrap.pypa.io/pip/2.7/get-pip.py) &&
+# python2 -m pip install -v Cython numpy
 
 cd "${BUILD_DIR}" &&
 	wget --quiet --read-timeout=10 -nc -P tar/ "http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-${PETSC_VERSION}.tar.gz" &&
@@ -53,6 +67,7 @@ cd "${BUILD_DIR}" &&
 		--download-superlu \
 		--prefix="${PREFIX}" &&
 	make MAKE_NP="${BUILD_THREADS}" && make install
+        # --download-petsc4py \
 
 if [ "$CONTINUE_ON_KEY" = true ]; then
 	echo "Press any key to continue..."
